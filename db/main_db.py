@@ -46,3 +46,22 @@ def delete_task(id,):
 
     conn.commit()
     conn.close()
+
+def delete_all_tasks():
+    conn = sqlite3.connect(config.db_path)
+    cursor = conn.cursor()
+
+    cursor.execute(queries.delete_all_tasks)
+    conn.commit()
+    conn.close()
+
+def get_all_tasks():
+    conn = sqlite3.connect(config.db_path)
+    cursor = conn.cursor()
+
+    cursor.execute(queries.read_tasks)
+    result = cursor.fetchall()
+
+    conn.close()
+    return result
+    
